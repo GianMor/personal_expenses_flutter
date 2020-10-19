@@ -17,20 +17,20 @@ class TransactionList extends StatelessWidget {
               Container(
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.deepOrange, width: 2)),
+                      border: Border.all(color: Theme.of(context).primaryColorLight, width: 2)),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     '\$${transaction[index].amount.toStringAsFixed(2)}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.orange),
+                        color: Theme.of(context).primaryColorDark),
                   )),
               Column(
                 children: <Widget>[
                   Text(
                     transaction[index].title,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
                     DateFormat()
@@ -41,7 +41,8 @@ class TransactionList extends StatelessWidget {
                 ],
               )
             ]));
-          }, itemCount: transaction.length,
+          },
+          itemCount: transaction.length,
         ));
   }
 }
