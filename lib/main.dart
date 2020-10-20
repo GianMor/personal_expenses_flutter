@@ -60,6 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() => _transactionList.add(newTx));
   }
 
+  void _deleteTransaction(int id) {
+    setState(() {
+      _transactionList.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   void startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -84,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Chart(_recentTransactions),
-          TransactionList(_transactionList)],
+          TransactionList(_transactionList,_deleteTransaction)],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
