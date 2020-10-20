@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Transaction(id: 2, title: "New scarf", amount: 22.22, date: DateTime.now()),
   ];
 
+  
+
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
         id: Random().nextInt(100),
