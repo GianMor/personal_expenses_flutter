@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:personal_expenses_flutter/widgets/chart.dart';
 import 'package:personal_expenses_flutter/widgets/new_transaction.dart';
 import 'package:personal_expenses_flutter/widgets/transaction_list.dart';
 import 'models/transaction.dart';
@@ -42,7 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // Transaction(id: 2, title: "New scarf", amount: 22.22, date: DateTime.now()),
   ];
 
-  
+  List<Transaction> get _recentTransactions {
+    return _transactionList
+        .where(
+            (tx) => tx.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
@@ -76,7 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[TransactionList(_transactionList)],
+          children: <Widget>[
+            Chart(_recentTransactions),
+          TransactionList(_transactionList)],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
